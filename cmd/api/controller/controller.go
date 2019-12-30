@@ -3,7 +3,7 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/superhero-choice/cmd/api/controller/service"
+	"github.com/superhero-choice/cmd/api/service"
 	"github.com/superhero-choice/internal/config"
 )
 

@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"strings"
 	"time"
@@ -8,7 +9,7 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/gin-gonic/gin"
-	ctrl "github.com/superhero-choice/cmd/api/controller/model"
+	ctrl "github.com/superhero-choice/cmd/api/model"
 	"go.uber.org/zap"
 )
 
@@ -31,24 +32,30 @@ func (ctl *Controller) Choice(c *gin.Context) {
 	// If so, return is match right away.
 	// The likes are being save under the key with the following format -> superheroID.chosenSuperheroID.
 	// So to check if the chosenSuperhero liked the superhero --> chosenSuperheroID.superheroID.
-	res, err := ctl.Service.GetChoice(req.ChosenSuperheroID + "." + req.SuperheroID)
-	if checkError(err, c) {
-		ctl.Service.Logger.Error(
-			"failed while executing service.HandleESRequest()",
-			zap.String("err", err.Error()),
-			zap.String("time", time.Now().UTC().Format(ctl.Service.TimeFormat)),
-		)
+	if req.Choice != int64(2) { // 2 is dislike, no need to check if it is stored, only likes are stored.
+		res, err := ctl.Service.GetChoice(req.ChosenSuperheroID + "." + req.SuperheroID)
+		if checkError(err, c) {
+			ctl.Service.Logger.Error(
+				"failed while executing service.HandleESRequest()",
+				zap.String("err", err.Error()),
+				zap.String("time", time.Now().UTC().Format(ctl.Service.TimeFormat)),
+			)
 
-		return
-	}
+			return
+		}
 
-	if res != nil {
-		c.JSON(http.StatusOK, gin.H{
-			"status":  http.StatusOK,
-			"isMatch": true,
-		})
+		if res != nil {
+			fmt.Println("GetChoice --> res")
+			fmt.Printf("GetChoice --> res: %+v", res)
+			fmt.Println()
 
-		return
+			c.JSON(http.StatusOK, gin.H{
+				"status":  http.StatusOK,
+				"isMatch": true,
+			})
+
+			return
+		}
 	}
 
 	id := strings.ReplaceAll(uuid.New().String(), "-", "")

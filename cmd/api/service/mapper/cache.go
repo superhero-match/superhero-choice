@@ -1,13 +1,13 @@
 package mapper
 
 import (
-	model2 "github.com/superhero-choice/cmd/api/controller/model"
+	"github.com/superhero-choice/cmd/api/model"
 	cache "github.com/superhero-choice/internal/cache/model"
 )
 
-// MapCacheChoiceToResult maps cache Choice model to API models that are returned to the user.
-func MapCacheChoiceToResult(cachedChoice cache.Choice) model2.Choice {
-	return model2.Choice{
+// MapCacheChoiceToResult maps cache Choice model to API model(external model) that is returned to the user.
+func MapCacheChoiceToResult(cachedChoice cache.Choice) model.Choice {
+	return model.Choice{
 		ID:                cachedChoice.ID,
 		Choice:            cachedChoice.Choice,
 		SuperheroID:       cachedChoice.SuperheroID,

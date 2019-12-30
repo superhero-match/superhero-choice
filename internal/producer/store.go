@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-
 	"github.com/segmentio/kafka-go"
 
 	"github.com/superhero-choice/internal/producer/model"
