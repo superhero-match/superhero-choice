@@ -33,7 +33,7 @@ func (ctl *Controller) Choice(c *gin.Context) {
 	// The likes are being save under the key with the following format -> superheroID.chosenSuperheroID.
 	// So to check if the chosenSuperhero liked the superhero --> chosenSuperheroID.superheroID.
 	if req.Choice != int64(2) { // 2 is dislike, no need to check if it is stored, only likes are stored.
-		res, err := ctl.Service.GetChoice(req.ChosenSuperheroID + "." + req.SuperheroID)
+		res, err := ctl.Service.GetChoice(fmt.Sprintf("choice.%s.%s", req.ChosenSuperheroID, req.SuperheroID))
 		if checkError(err, c) {
 			ctl.Service.Logger.Error(
 				"failed while executing service.HandleESRequest()",
@@ -45,10 +45,6 @@ func (ctl *Controller) Choice(c *gin.Context) {
 		}
 
 		if res != nil {
-			fmt.Println("GetChoice --> res")
-			fmt.Printf("GetChoice --> res: %+v", res)
-			fmt.Println()
-
 			c.JSON(http.StatusOK, gin.H{
 				"status":  http.StatusOK,
 				"isMatch": true,
