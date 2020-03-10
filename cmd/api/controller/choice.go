@@ -22,7 +22,7 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/gin-gonic/gin"
-	ctrl "github.com/superhero-choice/cmd/api/model"
+	ctrl "github.com/superhero-match/superhero-choice/cmd/api/model"
 	"go.uber.org/zap"
 )
 

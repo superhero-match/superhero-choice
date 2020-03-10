@@ -15,7 +15,7 @@ package cache
 
 import (
 	"github.com/go-redis/redis"
-	"github.com/superhero-choice/internal/cache/model"
+	"github.com/superhero-match/superhero-choice/internal/cache/model"
 )
 
 // GetChoice fetches choice(like) from cache if it exist.

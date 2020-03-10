@@ -14,8 +14,8 @@
 package service
 
 import (
-	"github.com/superhero-choice/cmd/api/model"
-	"github.com/superhero-choice/cmd/api/service/mapper"
+	"github.com/superhero-match/superhero-choice/cmd/api/model"
+	"github.com/superhero-match/superhero-choice/cmd/api/service/mapper"
 )
 
 // GetChoice fetches choice(like) from cache if it exist.

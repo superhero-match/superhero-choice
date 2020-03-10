@@ -14,8 +14,8 @@
 package service
 
 import (
-	"github.com/superhero-choice/cmd/api/model"
-	"github.com/superhero-choice/cmd/api/service/mapper"
+	"github.com/superhero-match/superhero-choice/cmd/api/model"
+	"github.com/superhero-match/superhero-choice/cmd/api/service/mapper"
 )
 
 // StoreChoice publishes new choice on Kafka topic for it to be

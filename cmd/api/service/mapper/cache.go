@@ -14,8 +14,8 @@
 package mapper
 
 import (
-	"github.com/superhero-choice/cmd/api/model"
-	cache "github.com/superhero-choice/internal/cache/model"
+	"github.com/superhero-match/superhero-choice/cmd/api/model"
+	cache "github.com/superhero-match/superhero-choice/internal/cache/model"
 )
 
 // MapCacheChoiceToResult maps cache Choice model to API model(external model) that is returned to the user.

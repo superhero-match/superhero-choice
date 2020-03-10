@@ -14,9 +14,9 @@
 package service
 
 import (
-	"github.com/superhero-choice/internal/cache"
-	"github.com/superhero-choice/internal/config"
-	"github.com/superhero-choice/internal/producer"
+	"github.com/superhero-match/superhero-choice/internal/cache"
+	"github.com/superhero-match/superhero-choice/internal/config"
+	"github.com/superhero-match/superhero-choice/internal/producer"
 	"go.uber.org/zap"
 )
 
