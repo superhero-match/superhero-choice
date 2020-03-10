@@ -18,7 +18,7 @@ import (
 
 	"github.com/segmentio/kafka-go"
 
-	"github.com/superhero-choice/internal/config"
+	"github.com/superhero-match/superhero-choice/internal/config"
 )
 
 // Producer holds Kafka producer related data.

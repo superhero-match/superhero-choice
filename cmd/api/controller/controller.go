@@ -16,8 +16,8 @@ package controller
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/superhero-choice/cmd/api/service"
-	"github.com/superhero-choice/internal/config"
+	"github.com/superhero-match/superhero-choice/cmd/api/service"
+	"github.com/superhero-match/superhero-choice/internal/config"
 )
 
 // Controller holds the Controller data.

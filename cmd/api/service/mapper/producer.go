@@ -14,8 +14,8 @@
 package mapper
 
 import (
-	"github.com/superhero-choice/cmd/api/model"
-	producer "github.com/superhero-choice/internal/producer/model"
+	"github.com/superhero-match/superhero-choice/cmd/api/model"
+	producer "github.com/superhero-match/superhero-choice/internal/producer/model"
 )
 
 // MapAPIChoiceToProducer maps API Choice model to Producer model.
