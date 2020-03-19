@@ -26,6 +26,8 @@ import (
 	"go.uber.org/zap"
 )
 
+const dislike = int64(2)
+
 // Choice returns the suggestions for the Superhero.
 func (ctl *Controller) Choice(c *gin.Context) {
 	var req ctrl.Request
@@ -45,7 +47,7 @@ func (ctl *Controller) Choice(c *gin.Context) {
 	// If so, return is match right away.
 	// The likes are being save under the key with the following format -> superheroID.chosenSuperheroID.
 	// So to check if the chosenSuperhero liked the superhero --> chosenSuperheroID.superheroID.
-	if req.Choice != int64(2) { // 2 is dislike, no need to check if it is stored, only likes are stored.
+	if req.Choice != dislike { // 2 is dislike, no need to check if it is stored, only likes are stored.
 		res, err := ctl.Service.GetChoice(fmt.Sprintf("choice.%s.%s", req.ChosenSuperheroID, req.SuperheroID))
 		if checkError(err, c) {
 			ctl.Service.Logger.Error(
