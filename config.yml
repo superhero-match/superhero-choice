@@ -1,25 +1,18 @@
 app:
   port: ':4100'
-  cert_file: './cmd/api/certificate.pem'
-  key_file: './cmd/api/key.pem'
   time_format: '2006-01-02T15:04:05'
 
 producer:
-  brokers: ['192.168.0.64:9092']
+  brokers: '192.168.1.229:9092'
   topic: 'store.choice.choice'
   batch_size: 1
   batch_timeout: 10
 
 cache:
-  address: '192.168.0.64'
+  address: '192.168.1.229'
   port: ':6379'
   password: 'Awesome85**'
   db: 0
   pool_size: 25
   minimum_idle_connections: 10
   maximum_retries: 1
-
-health:
-  port: ':8130'
-  shutdown_endpoint: '/api/v1/superhero_choice_health/shutdown'
-  content_type: 'application/json'

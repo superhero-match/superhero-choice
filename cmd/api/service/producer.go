@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2019 - 2021 MWSOFT
+  Copyright (C) 2019 - 2022 MWSOFT
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -20,6 +20,6 @@ import (
 
 // StoreChoice publishes new choice on Kafka topic for it to be
 // consumed by consumer and stored in Cache.
-func (s *Service) StoreChoice(c model.Choice) error {
+func (s *service) StoreChoice(c model.Choice) error {
 	return s.Producer.StoreChoice(mapper.MapAPIChoiceToProducer(c))
 }

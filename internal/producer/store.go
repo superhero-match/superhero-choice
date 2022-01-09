@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2019 - 2021 MWSOFT
+  Copyright (C) 2019 - 2022 MWSOFT
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -17,6 +17,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+
 	"github.com/segmentio/kafka-go"
 
 	"github.com/superhero-match/superhero-choice/internal/producer/model"
@@ -24,7 +25,7 @@ import (
 
 // StoreChoice publishes new choice on Kafka topic for it to be
 // consumed by consumer and stored in Cache.
-func (p *Producer) StoreChoice(c model.Choice) error {
+func (p *producer) StoreChoice(c model.Choice) error {
 	var sb bytes.Buffer
 
 	err := json.NewEncoder(&sb).Encode(c)

@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2019 - 2021 MWSOFT
+  Copyright (C) 2019 - 2022 MWSOFT
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -19,25 +19,25 @@ import (
 	"strings"
 	"time"
 
-	"github.com/google/uuid"
-
 	"github.com/gin-gonic/gin"
-	ctrl "github.com/superhero-match/superhero-choice/cmd/api/model"
+	"github.com/google/uuid"
 	"go.uber.org/zap"
+
+	ctrl "github.com/superhero-match/superhero-choice/cmd/api/model"
 )
 
 const dislike = int64(2)
 
-// Choice returns the suggestions for the Superhero.
+// Choice saves the choice made by the user.
 func (ctl *Controller) Choice(c *gin.Context) {
 	var req ctrl.Request
 
 	err := c.BindJSON(&req)
 	if checkError(err, c) {
-		ctl.Service.Logger.Error(
+		ctl.Logger.Error(
 			"failed to bind JSON to value of type Request",
 			zap.String("err", err.Error()),
-			zap.String("time", time.Now().UTC().Format(ctl.Service.TimeFormat)),
+			zap.String("time", time.Now().UTC().Format(ctl.TimeFormat)),
 		)
 
 		return
@@ -45,15 +45,15 @@ func (ctl *Controller) Choice(c *gin.Context) {
 
 	// Check if the chosenSuperhero like the superhero.
 	// If so, return is match right away.
-	// The likes are being save under the key with the following format -> superheroID.chosenSuperheroID.
+	// The likes are being saved under the key with the following format -> superheroID.chosenSuperheroID.
 	// So to check if the chosenSuperhero liked the superhero --> chosenSuperheroID.superheroID.
 	if req.Choice != dislike { // 2 is dislike, no need to check if it is stored, only likes are stored.
 		res, err := ctl.Service.GetChoice(fmt.Sprintf("choice.%s.%s", req.ChosenSuperheroID, req.SuperheroID))
 		if checkError(err, c) {
-			ctl.Service.Logger.Error(
+			ctl.Logger.Error(
 				"failed while executing service.HandleESRequest()",
 				zap.String("err", err.Error()),
-				zap.String("time", time.Now().UTC().Format(ctl.Service.TimeFormat)),
+				zap.String("time", time.Now().UTC().Format(ctl.TimeFormat)),
 			)
 
 			return
@@ -76,13 +76,13 @@ func (ctl *Controller) Choice(c *gin.Context) {
 		Choice:            req.Choice,
 		SuperheroID:       req.SuperheroID,
 		ChosenSuperheroID: req.ChosenSuperheroID,
-		CreatedAt:         time.Now().UTC().Format(ctl.Service.TimeFormat),
+		CreatedAt:         time.Now().UTC().Format(ctl.TimeFormat),
 	})
 	if checkError(err, c) {
-		ctl.Service.Logger.Error(
+		ctl.Logger.Error(
 			"failed while executing service.HandleESRequest()",
 			zap.String("err", err.Error()),
-			zap.String("time", time.Now().UTC().Format(ctl.Service.TimeFormat)),
+			zap.String("time", time.Now().UTC().Format(ctl.TimeFormat)),
 		)
 
 		return
